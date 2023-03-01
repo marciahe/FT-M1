@@ -21,7 +21,7 @@ var c = function (a, b, c) {
       var x = 5;
    };
    f(a, b, c);
-   console.log(b); // 10 (toma el valor de 'c' en la línea 20) ?????
+   console.log(b); // 9 (salió de la función y toma el valor del)
 };
 c(8, 9, 10); 
 console.log(b); // 10 (llama a la variable global en línea 12)
@@ -30,7 +30,7 @@ console.log(x); // 1 (línea 10)
 // 10
 // 8
 // 8
-// 10 --> xxxxxxxxxxxxxxxxxxxxxx (sale 8 🤔)
+// 9 
 // 10
 // 1
 
@@ -88,7 +88,8 @@ console.log(pm);
 // The Flash
 // Reverse Flash
 // The Flash (ya se ejecutó el if)
-// Franco ---> xxxxxxxxxxxxxxxxx (undefined porque era 'let' 🤷‍♀️)
+// Franco 
+// Sale un undefines extra en el navegador
 
 
 // ### Coerción de Datos
@@ -117,7 +118,7 @@ parseInt("09")
 // 2
 // undefined ---> xxxxxxxxxx (NaN)
 // undefined ---> xxxxxxxxxx (Infinity)
-// undefined ---> xxxxxxxxxx ([0])
+// undefined ---> xxxxxxxxxx ([0]) (acá da undefined)
 // 09 -----> xxxxxx (9)
 // 2
 // 5
