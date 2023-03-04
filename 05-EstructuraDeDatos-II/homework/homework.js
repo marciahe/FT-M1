@@ -10,9 +10,100 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   search(isEven), donde isEven es una función que retorna true cuando recibe por parámetro un número par, busca un nodo cuyo valor sea un número par.
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
-function LinkedList() {}
+function LinkedList(value) {
+  this.head = null;
+  // this.value = value;
 
-function Node(value) {}
+}
+function Node(value) {
+  this.next = null;
+  this.value = value;
+}
+
+LinkedList.prototype.add = function(value){
+  const newNode = new Node(value);
+  let current = this.head;
+
+  if (!current){
+    this.head = newNode;
+    return value;
+  }
+  while (current.next) {
+    current = current.next;
+  }
+  current.next = newNode;
+  return value;
+}
+
+LinkedList.prototype.remove = function(){
+
+  let current = this.head;
+
+  if (!current){
+    return null;
+  }
+
+  if (!current.next){
+    this.head = null;
+    return current.value;
+  }
+
+  let penultimo = null;
+
+  while (current.next !== null) {
+    penultimo = current;
+    current = current.next;
+  }
+
+  penultimo.next = null;
+  return current.value;
+}
+
+LinkedList.prototype.search = function(value){
+  // - search: recibe un parámetro y lo busca dentro de la lista, con una particularidad: el parámetro puede ser un valor o un callback. En el primer caso, buscamos un nodo cuyo valor coincida con lo buscado; en el segundo, buscamos un nodo cuyo valor, al ser pasado como parámetro del callback, retorne true. 
+  let current = this.head;
+  let found = null;
+  var searchValue = function(value){ 
+    if (current.value == value) {
+      console.log(current.value);
+      found = current.value;
+    }
+  };
+  searchValue(value);
+
+  while (current.next) {
+    current = current.next;
+    searchValue(value);
+  }
+  // let foundFunction = null;
+  // if(typeof value === 'function'){
+  //   console.log(typeof value);
+  //   foundFunction = value();
+  //   console.log(foundFunction);
+  //   return foundFunction
+  // }
+
+
+  console.log(found);
+  return found;
+
+
+}
+
+let linkedList = new LinkedList();
+    linkedList.add('one');
+    linkedList.add('two');
+    linkedList.add('three');
+    linkedList.add('four');
+    linkedList.search('two');
+
+    linkedList.search(function(nodeValue) {
+      return nodeValue === 'two';
+    })
+
+    console.log(linkedList)
+
+
 
 /* EJERCICIO 2
 Implementar la clase HashTable.
