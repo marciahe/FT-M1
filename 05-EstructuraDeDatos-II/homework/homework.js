@@ -12,7 +12,7 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
 */
 function LinkedList(value) {
   this.head = null;
-  // this.value = value;
+  this.value = value;
 
 }
 function Node(value) {
@@ -37,6 +37,8 @@ LinkedList.prototype.add = function(value){
 
 LinkedList.prototype.remove = function(){
 
+
+
   let current = this.head;
 
   if (!current){
@@ -44,63 +46,70 @@ LinkedList.prototype.remove = function(){
   }
 
   if (!current.next){
-    this.head = null;
+    this.head = null; 
     return current.value;
   }
 
   let penultimo = null;
 
-  while (current.next !== null) {
+  while (current.next) {
     penultimo = current;
     current = current.next;
   }
 
   penultimo.next = null;
   return current.value;
+
+  // while (current.next.next) {
+  //   current = current.next;
+  // }
+  // let eliminated = current.next.value;
+  // current.next = null; 
+  // return eliminated;
+
 }
 
-LinkedList.prototype.search = function(value){
-  // - search: recibe un parámetro y lo busca dentro de la lista, con una particularidad: el parámetro puede ser un valor o un callback. En el primer caso, buscamos un nodo cuyo valor coincida con lo buscado; en el segundo, buscamos un nodo cuyo valor, al ser pasado como parámetro del callback, retorne true. 
+LinkedList.prototype.search = function(param){
+
   let current = this.head;
-  let found = null;
-  var searchValue = function(value){ 
-    if (current.value == value) {
-      console.log(current.value);
-      found = current.value;
+  if (!current) {return null};
+
+  if (typeof param === 'function') {
+    while (current) {
+      if (param(current.value)) {
+        return current.value;
+      } else {
+        current = current.next;
+      }
     }
-  };
-  searchValue(value);
+    return null;
+  } else {
+    console.log(current);
 
-  while (current.next) {
-    current = current.next;
-    searchValue(value);
+    while (current) {
+    if (current.value == param) {
+        return param;
+    }else {
+      current = current.next;
+    }
+    } 
+    return null
   }
-  // let foundFunction = null;
-  // if(typeof value === 'function'){
-  //   console.log(typeof value);
-  //   foundFunction = value();
-  //   console.log(foundFunction);
-  //   return foundFunction
-  // }
-
-
-  console.log(found);
-  return found;
-
 
 }
 
 let linkedList = new LinkedList();
+    linkedList.add('zero');
     linkedList.add('one');
     linkedList.add('two');
-    linkedList.add('three');
-    linkedList.add('four');
-    linkedList.search('two');
+    console.log(linkedList)
 
-    linkedList.search(function(nodeValue) {
+    let sergi = linkedList.search('two');
+    console.log(sergi);
+    let sergi2 = linkedList.search(function(nodeValue) {
       return nodeValue === 'two';
     })
-
+    console.log(sergi2)
     console.log(linkedList)
 
 
