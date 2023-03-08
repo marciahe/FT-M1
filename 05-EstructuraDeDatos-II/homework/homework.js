@@ -36,9 +36,6 @@ LinkedList.prototype.add = function(value){
 }
 
 LinkedList.prototype.remove = function(){
-
-
-
   let current = this.head;
 
   if (!current){
@@ -70,7 +67,6 @@ LinkedList.prototype.remove = function(){
 }
 
 LinkedList.prototype.search = function(param){
-
   let current = this.head;
   if (!current) {return null};
 
@@ -95,22 +91,7 @@ LinkedList.prototype.search = function(param){
     } 
     return null
   }
-
 }
-
-let linkedList = new LinkedList();
-    linkedList.add('zero');
-    linkedList.add('one');
-    linkedList.add('two');
-    console.log(linkedList)
-
-    let sergi = linkedList.search('two');
-    console.log(sergi);
-    let sergi2 = linkedList.search(function(nodeValue) {
-      return nodeValue === 'two';
-    })
-    console.log(sergi2)
-    console.log(linkedList)
 
 
 
