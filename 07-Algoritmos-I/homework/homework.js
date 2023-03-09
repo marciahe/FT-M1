@@ -36,7 +36,6 @@ function bubbleSort(array) {
   // }
   // return array;
   let ordered = false;
-
   while (!ordered){
     ordered = true;
     for (let i = 0; i < array.length -1; i++) {
@@ -56,14 +55,26 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-  for (let j = 0; j < array.length; j++) {
-    for (let i = 1; i < array.length; i++) {
-      if (array[i] < array[i-1]) {
-        let save = array[i];
-        array[i] = array[i-1];
-        array[i-1] = save;
-      }
+  // for (let j = 0; j < array.length; j++) {
+  //   for (let i = 1; i < array.length; i++) {
+  //     if (array[i] < array[i-1]) {
+  //       let save = array[i];
+  //       array[i] = array[i-1];
+  //       array[i-1] = save;
+  //     }
+  //   }
+  // }
+  // return array;
+
+  //El código de Martina (20a)
+  for (let i = 1; i < array.length; i++) {
+    let j = i-1;
+    let aux = array[i];
+    while (j >= 0 && aux < array[j]) {
+      array[j + 1] = array[j]
+      j--;
     }
+    array[j + 1] = aux;
   }
   return array;
 }
@@ -73,7 +84,6 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
   for (let i = 0; i < array.length; i++) {
     let saved = i; // empiezo a guardar la *posición* (no el valor)
     for (let j = i + 1; j < array.length; j++) {
@@ -87,10 +97,6 @@ function selectionSort(array) {
   }
   return array;
 }
-
-console.log(selectionSort([5, 1, 4, 2]));
-console.log(selectionSort([10, 10, 16, 12]));
-console.log(selectionSort([10, -2, -7, 4]));
 
 
 // No modificar nada debajo de esta línea
